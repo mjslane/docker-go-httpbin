@@ -7,3 +7,5 @@ services:
       - 8080:8080
     build:
       context: .
+      args:
+        VERSION: 0.0.DEV
