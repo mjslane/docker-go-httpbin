@@ -1,0 +1,21 @@
+sudo: required
+services:
+- docker
+
+script:
+- docker build -t $REPO:$COMMIT .
+
+after_success:
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+- docker tag $REPO:$COMMIT $REPO:$TAG
+- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+- docker push $REPO
+- curl -X POST https://hooks.microbadger.com/images/skyscanner/go-httpbin/JrlH6udCH0uKSpdNrYjfuNlmH3Y=
+
+env:
+  global:
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - REPO=skyscanner/go-httpbin
+  - secure: "tA+GW3RI88qDA2zXog0r5OoqUaP8Wq9WIiZOeoCGSVFcFgare6idZfBePuufH8Cs7FtjRjP54kDuZ5Fsb5noeADITCybxFKQPxKysnFP3A0IOlQ5pYglqcGNa2gvFO4mhXOZv+aE+pANpE3bSlm1U78751evLwCRJNd+F3sVRV5GHHualCfRokNOaKClBt7+Iw1Qs3TJVoMrhtxZhwbWwJ6kPUzAMJbVcn/96IYddgmRDfrhNql2CC1emnm1movCX1lVfwdpCO46+oTJGOA/2AkOopzryvT6Gi73Y2cFX1s5p8TM4VD+4RU7d1D0N1ZU7n2jT+CF1QbH59NXz6DII0fKUjnpuXLGSfg6ixp6WnQMkwlF4vHUnYLAp35+kYJUYyG3k5jvFJWTMzjXDef06vNK9cyUzvjqObNh4mWQPJ1IfVe/RmcBRe4t9T7IVctHCLWTGBQmKrISiI7DqSI86kuMR/I3aPNy7Uj9S0GSJpxTF2cquXSbVW+qUkWZ1fQuwYUSn33ULOUmiO6glZ/YZzh/ag2A/mh8wlpWKvQ6FcKUksO2XZ2QP8Z4ouLKqo8oNAWRUfrCFCaYMtAoRVIRexilgmI1FMmOqrryZUmPgBsgvqaM/O9NEkw5UFEC/AJ+12NM75x2Ldftgdspgr9bdRXb0IkGqtlCSVZREbU1Dc4="
+  - secure: "AyQ/WiFN4wb78WHx7yx4aYe7AEzgFTqmYCRQAbYDQliuW584Um9fsVpji17ndwWEcT7hLus1JPZmnj3MoRC9XSKVsBFCbLbArCQj243nl80o+NTNB/riEsLq8vn0eOhUaraD4OxvgUQ4Hws2rxTGP1jlKRB76SisOC3UeKtHAhJX/hotiOhuNEmang45SMtLFrH9XaqIDI0yRwgosYp4faBmUfOKv/WPXuA/XTGwWgFjwOlXVhfW9poGwtidFQBMw+XD4g6xUu50nQKUSFXe1Z3k9Dnnonc9ds51PjgzWD3NF1WNKrYqgdnYlsV9MClyui60Xz2Og9OLOlQb92ughVW6sdrOww8DmXen5vwTHCDZ6szCFV2j1q4MkbD76ppKFwf7I1ZaSyJJ4DfyQqWbGEZaWEvExLRXvwXabMN7oG0xU/PIj8YF6wzAHptqEvBCsIno3WPXcKxbTaphvfAcnsfeyxFAp/EX4I5l8aCJPTFm47sYbDqmovyIsD4pN3xxn59E6vgKZoJxQP+evhMPgB5V5xB3tydfeSWiewugEKo0jTtGe06c8askzzEDubFjyoF/4RqAoRpTtLVsHECVc5igFqUJi1eJIDmkfNf+AtXaK+yp+2tqpBWu+eDH67SxkRo5au6NV800S4+awRsd8PVaz8+uTUGGl7s1StP4VRA="
