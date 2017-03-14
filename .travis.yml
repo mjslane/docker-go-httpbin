@@ -11,7 +11,7 @@ after_success:
 - docker tag $REPO:$COMMIT $REPO:$TAG
 - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
 - docker push $REPO
-- curl -X POST https://hooks.microbadger.com/images/skyscanner/go-httpbin/JrlH6udCH0uKSpdNrYjfuNlmH3Y=
+- curl -X POST https://hooks.microbadger.com/images/skyscanner/go-httpbin/HbCKylhdIuD2h6-8Rmn84vAHWEE=
 
 env:
   global:
