@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Skyscanner/docker-go-httpbin.svg?branch=master)](https://travis-ci.org/Skyscanner/docker-go-httpbin)
-[![](https://images.microbadger.com/badges/image/skyscanner/go-httpbin.svg)](http://microbadger.com/images/skyscanner/go-httpbin "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/skyscanner/go-httpbin.svg)](http://microbadger.com/images/skyscanner/go-httpbin "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/skyscanner/go-httpbin.svg)](https://microbadger.com/images/skyscanner/go-httpbin "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/skyscanner/go-httpbin.svg)](https://microbadger.com/images/skyscanner/go-httpbin "Get your own version badge on microbadger.com")
 
 # docker-go-httpbin
 
@@ -11,7 +11,7 @@ the image is called [skyscanner/go-httpbin](https://hub.docker.com/r/skyscanner/
 example run:
 
 ```
-: docker run skyscanner/go-httpbin -p 8080:8080
+: docker run  -p 8080:8080 skyscanner/go-httpbin
 
 2017/03/14 13:19:33 httpbin listening on 0.0.0.0:8080
 ```
