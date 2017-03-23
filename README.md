@@ -18,3 +18,7 @@ example run:
 
 # Usage
 You can run this image wherever you'd like a httpbin instance. It's useful in docker-compose frameworks for instance.
+
+# Credits
+the golang version of http is developed by Ahmet Alp Balkan
+code repo is hosted here: https://github.com/ahmetb/go-httpbin
