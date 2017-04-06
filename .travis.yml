@@ -2,6 +2,10 @@ sudo: required
 services:
 - docker
 
+branches:
+  only:
+  - master
+
 script:
 - docker build -t $REPO:$COMMIT .
 
